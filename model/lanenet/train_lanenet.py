@@ -6,7 +6,7 @@ import numpy as np
 import time
 import copy
 from model.lanenet.loss import DiscriminativeLoss, FocalLoss
-
+from tqdm import tqdm
 def compute_loss(net_output, binary_label, instance_label, loss_type = 'FocalLoss'):
     k_binary = 10    #1.7
     k_instance = 0.3
@@ -60,7 +60,7 @@ def train_model(model, optimizer, scheduler, dataloaders, dataset_sizes, device,
             running_loss_i = 0.0
 
             # Iterate over data.
-            for inputs, binarys, instances in dataloaders[phase]:
+            for inputs, binarys, instances in tqdm(dataloaders[phase]):
                 inputs = inputs.type(torch.FloatTensor).to(device)
                 binarys = binarys.type(torch.LongTensor).to(device)
                 instances = instances.type(torch.FloatTensor).to(device)

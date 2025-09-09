@@ -36,7 +36,7 @@ def evaluation():
         Rescale((resize_width, resize_height)),
     ])
 
-    dataset_file = os.path.join(args.dataset, 'test.txt')
+    dataset_file = os.path.join(args.dataset, 'val.txt')
     Eval_Dataset = TusimpleSet(dataset_file, transform=data_transform, target_transform=target_transforms)
     eval_dataloader = DataLoader(Eval_Dataset, batch_size=1, shuffle=True)
 
